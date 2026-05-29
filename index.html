@@ -64,7 +64,6 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 3rem;
-      /* Dark Glassmorphism background for perfect readability */
       background: rgba(13, 13, 13, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -87,7 +86,6 @@
     }
     .nav-links a:hover { opacity: 1; }
 
-    /* Cool Pulse Animation for Portfolio Link */
     @keyframes pulse-glow {
       0% { box-shadow: 0 0 0 0 rgba(212,168,83, 0.4); }
       70% { box-shadow: 0 0 0 10px rgba(212,168,83, 0); }
@@ -126,9 +124,10 @@
       position: fixed; inset: 0; background: var(--ink); z-index: 99;
       display: flex; align-items: center; justify-content: center;
       opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+      overflow-y: auto; /* Ensures menu is scrollable on tiny phones */
     }
     .mobile-menu.open { opacity: 1; pointer-events: auto; }
-    .mobile-menu ul { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 2.5rem; }
+    .mobile-menu ul { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 2.5rem; padding: 2rem 0; }
     .mobile-menu a { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: #fff; text-decoration: none; transition: color 0.2s; }
     .mobile-menu a:hover { color: var(--accent); }
 
@@ -136,10 +135,11 @@
     #hero { 
       position: relative; 
       min-height: 100vh; 
+      min-height: 100dvh; /* Modern mobile browser fix */
       display: flex; 
       align-items: flex-end; 
       overflow: hidden; 
-      background-color: #111; 
+      background-color: var(--ink); 
       background-image: url('https://i.pinimg.com/originals/f0/f0/d9/f0f0d932d6e39c7af5aa305cbd8da735.gif');
       background-size: cover; 
       background-position: right bottom; 
@@ -150,7 +150,7 @@
     .hero-overlay { 
       position: absolute; 
       inset: 0; 
-      background: linear-gradient(to top, rgba(13,13,13,.95) 0%, rgba(13,13,13,.4) 50%, rgba(13,13,13,.2) 100%); 
+      background: linear-gradient(to top, rgba(13,13,13,1) 0%, rgba(13,13,13,.5) 50%, rgba(13,13,13,.2) 100%); 
       z-index: 1; 
     }
 
@@ -159,7 +159,7 @@
     .hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .2em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.4rem; opacity: 0; animation: fadeUp .8s .2s forwards; }
     .hero-h1 { font-family: 'DM Serif Display', serif; font-size: clamp(3.2rem, 7vw, 6.5rem); line-height: 1.02; color: #fff; margin-bottom: 2rem; opacity: 0; animation: fadeUp .9s .4s forwards; }
     .hero-h1 em { font-style: italic; color: var(--gold); }
-    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,.7); max-width: 500px; line-height: 1.7; margin-bottom: 2.8rem; font-weight: 300; opacity: 0; animation: fadeUp .9s .6s forwards; }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,.8); max-width: 500px; line-height: 1.7; margin-bottom: 2.8rem; font-weight: 300; opacity: 0; animation: fadeUp .9s .6s forwards; }
 
     .hero-actions { display: flex; align-items: center; gap: 2rem; opacity: 0; animation: fadeUp .9s .8s forwards; }
     .btn-primary { display: inline-flex; align-items: center; gap: .7rem; background: var(--accent); color: #fff; font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 1rem 2.2rem; border-radius: 2px; text-decoration: none; transition: transform .2s, box-shadow .2s; border: none; cursor: pointer; }
@@ -167,12 +167,12 @@
     .btn-primary svg { transition: transform .2s; }
     .btn-primary:hover svg { transform: translateX(5px); }
 
-    .hero-scroll { display: flex; align-items: center; gap: .8rem; color: rgba(255,255,255,.4); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
-    .scroll-line { width: 40px; height: 1px; background: rgba(255,255,255,.3); }
+    .hero-scroll { display: flex; align-items: center; gap: .8rem; color: rgba(255,255,255,.5); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; }
+    .scroll-line { width: 40px; height: 1px; background: rgba(255,255,255,.4); }
 
     .hero-counter { position: absolute; right: 3rem; bottom: 5rem; z-index: 2; text-align: right; opacity: 0; animation: fadeUp .9s 1s forwards; }
     .hero-counter span { display: block; font-family: 'DM Serif Display', serif; font-size: 3.5rem; color: var(--gold); line-height: 1; }
-    .hero-counter small { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+    .hero-counter small { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.6); }
 
     /* ── MARQUEE ── */
     .marquee-wrap { background: var(--ink); padding: 1.2rem 0; overflow: hidden; display: flex; }
@@ -366,7 +366,7 @@
     .reveal-delay-3 { transition-delay: .3s; }
     .reveal-delay-4 { transition-delay: .4s; }
 
-    /* ── MOBILE ── */
+    /* ── MOBILE RESPONSIVENESS ── */
     @media(max-width:1024px) {
       nav { padding: 1.2rem 2rem; }
       section { padding: 5rem 2rem; }
@@ -389,18 +389,27 @@
     }
     
     @media(max-width:768px) {
-      #hero { background-size: contain; background-position: center; }
-      #dashboard { padding: 4rem 1.5rem; }
+      /* PERFECT MOBILE BACKGROUND FIX */
+      #hero { 
+        background-size: cover; 
+        background-position: 85% 100%; /* Keeps anime girl in perfect view without letterboxing */
+      }
       
       .nav-links { display: none; }
       .hamburger { display: flex; }
       nav { padding: 1rem 1.5rem; }
       section { padding: 4rem 1.5rem; }
-      .hero-content { padding: 0 1.5rem 4rem; }
-      .hero-h1 { font-size: 3.2rem; }
+      .hero-content { padding: 0 1.5rem 6rem; } /* Extra bottom padding so buttons don't overlap counter */
+      .hero-h1 { font-size: 2.8rem; } /* Slightly scaled down to fit small phone screens perfectly */
       .hero-actions { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-      .hero-counter { right: 1.5rem; bottom: 4rem; }
+      
+      /* Reposition counter slightly higher for mobile */
+      .hero-counter { right: 1.5rem; bottom: 2rem; }
       .hero-counter span { font-size: 2.5rem; }
+      
+      .mobile-menu ul { gap: 1.8rem; } /* Condense mobile menu spacing */
+      
+      #dashboard { padding: 4rem 1.5rem; }
       .services-grid { grid-template-columns: 1fr; }
       .about-stats { flex-direction: column; gap: 2rem; }
       .process-steps { grid-template-columns: 1fr; }
@@ -482,7 +491,6 @@
     </div>
   </div>
 
-  <!-- FREELANCE DASHBOARD -->
   <section id="dashboard">
     <div class="inner">
       <div class="dash-grid">
@@ -729,7 +737,7 @@
                 <span class="project-pill">FastAPI</span>
                 <span class="project-pill">PyTorch</span>
               </div>
-              <a href="https://deepfake-detection-engine.vercel.appe" target="_blank" rel="noopener noreferrer" class="project-link">
+              <a href="https://deepfake-detection-engine.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">
                 Visit Live Site
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
               </a>
