@@ -124,7 +124,7 @@
       position: fixed; inset: 0; background: var(--ink); z-index: 99;
       display: flex; align-items: center; justify-content: center;
       opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-      overflow-y: auto; /* Ensures menu is scrollable on tiny phones */
+      overflow-y: auto;
     }
     .mobile-menu.open { opacity: 1; pointer-events: auto; }
     .mobile-menu ul { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 2.5rem; padding: 2rem 0; }
@@ -135,7 +135,7 @@
     #hero { 
       position: relative; 
       min-height: 100vh; 
-      min-height: 100dvh; /* Modern mobile browser fix */
+      min-height: 100dvh; 
       display: flex; 
       align-items: flex-end; 
       overflow: hidden; 
@@ -389,30 +389,36 @@
     }
     
     @media(max-width:768px) {
-      /* PERFECT MOBILE BACKGROUND FIX */
       #hero { 
         background-size: cover; 
-        background-position: 85% 100%; /* Keeps anime girl in perfect view without letterboxing */
+        background-position: 85% 100%; 
       }
       
-      .nav-links { display: none; }
+      /* THIS FIXES THE NAVBAR OVERLAP ON MOBILE */
+      .nav-links, .nav-cta { display: none; } 
+      
       .hamburger { display: flex; }
       nav { padding: 1rem 1.5rem; }
       section { padding: 4rem 1.5rem; }
-      .hero-content { padding: 0 1.5rem 6rem; } /* Extra bottom padding so buttons don't overlap counter */
-      .hero-h1 { font-size: 2.8rem; } /* Slightly scaled down to fit small phone screens perfectly */
+      .hero-content { padding: 0 1.5rem 6rem; }
+      .hero-h1 { font-size: 2.5rem; } /* Scaled down further to prevent weird breaks */
       .hero-actions { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       
-      /* Reposition counter slightly higher for mobile */
       .hero-counter { right: 1.5rem; bottom: 2rem; }
       .hero-counter span { font-size: 2.5rem; }
       
-      .mobile-menu ul { gap: 1.8rem; } /* Condense mobile menu spacing */
+      .mobile-menu ul { gap: 1.8rem; }
       
       #dashboard { padding: 4rem 1.5rem; }
       .services-grid { grid-template-columns: 1fr; }
       .about-stats { flex-direction: column; gap: 2rem; }
       .process-steps { grid-template-columns: 1fr; }
+      
+      /* THIS FIXES THE LONG PROJECT TEXT OVERFLOW ON MOBILE */
+      .project-title { font-size: 1.8rem; overflow-wrap: break-word; hyphens: auto; }
+      .project-content { padding: 2.5rem 1.5rem; } /* Relaxed the tight padding */
+      .project-visual { height: 250px; } /* Fits the image nicely into mobile view */
+      
       .pricing-card.featured { transform: none; }
       .pricing-card:hover { transform: translateY(-2px); }
     }
@@ -491,6 +497,7 @@
     </div>
   </div>
 
+  <!-- FREELANCE DASHBOARD -->
   <section id="dashboard">
     <div class="inner">
       <div class="dash-grid">
